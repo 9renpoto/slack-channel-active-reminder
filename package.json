@@ -23,7 +23,10 @@
     "eslint": "^4.3.0",
     "flow-bin": "^0.51.0",
     "ghpages": "^0.0.10",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.2",
     "npm-run-all": "^4.0.2",
+    "prettier-eslint-cli": "^4.1.1",
     "rimraf": "^2.6.1"
   },
   "engines": {
@@ -37,6 +40,13 @@
     "slack"
   ],
   "license": "MIT",
+  "lint-staged": {
+    "*.js": [
+      "prettier-eslint --write",
+      "eslint --cache",
+      "git add"
+    ]
+  },
   "main": "lib/index.js",
   "repository": {
     "type": "git",
@@ -53,6 +63,7 @@
     "lint:flow": "flow",
     "postpublish": "ghpages --path docs",
     "prebuild": "npm run clean",
+    "precommit": "lint-staged",
     "prepublish": "npm run build",
     "prestart": "npm run build",
     "pretest": "npm run build",
